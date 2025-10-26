@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -20,49 +21,49 @@
             min-height: 100vh;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
-        
+
         .header {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
             padding: 2rem;
             text-align: center;
         }
-        
+
         .header h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
             font-weight: 300;
         }
-        
+
         .header p {
             font-size: 1.1rem;
             opacity: 0.9;
         }
-        
+
         .content {
             padding: 2rem;
         }
-        
+
         .form-group {
             margin-bottom: 1.5rem;
         }
-        
+
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
             color: #555;
         }
-        
+
         input[type="url"] {
             width: 100%;
             padding: 12px 16px;
@@ -71,13 +72,13 @@
             font-size: 1rem;
             transition: border-color 0.3s ease;
         }
-        
+
         input[type="url"]:focus {
             outline: none;
             border-color: #4facfe;
             box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
         }
-        
+
         .button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -89,26 +90,26 @@
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        
+
         .button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
         }
-        
+
         .button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
-        
+
         .loading {
             display: none;
             text-align: center;
             padding: 2rem;
             color: #666;
         }
-        
+
         .spinner {
             border: 3px solid #f3f3f3;
             border-top: 3px solid #667eea;
@@ -118,12 +119,17 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
+
         .results {
             display: none;
             margin-top: 2rem;
@@ -131,7 +137,7 @@
             background: #f8f9fa;
             border-radius: 8px;
         }
-        
+
         .error {
             display: none;
             margin-top: 1rem;
@@ -141,147 +147,152 @@
             border-radius: 8px;
             color: #c33;
         }
-        
+
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
-        
+
         .stat-card {
             background: white;
             padding: 1rem;
             border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        
+
         .stat-value {
             font-size: 1.8rem;
             font-weight: bold;
             color: #667eea;
             display: block;
         }
-        
+
         .stat-label {
             font-size: 0.9rem;
             color: #666;
             margin-top: 0.25rem;
         }
-        
-        .text-preview, .summary-preview {
+
+        .text-preview,
+        .summary-preview {
             background: white;
             padding: 1rem;
             border-radius: 6px;
             border-left: 4px solid #667eea;
             margin-bottom: 1rem;
         }
-        
-        .text-preview h3, .summary-preview h3 {
+
+        .text-preview h3,
+        .summary-preview h3 {
             margin-bottom: 0.5rem;
             color: #333;
         }
-        
+
         .text-content {
             font-family: 'Georgia', serif;
             line-height: 1.6;
             color: #555;
+            /* Allow text to wrap */
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
-        
+
         .example-urls {
             margin-top: 1rem;
             padding: 1rem;
             background: #e8f4fd;
             border-radius: 6px;
         }
-        
+
         .example-urls h4 {
             margin-bottom: 0.5rem;
             color: #333;
         }
-        
+
         .url-link {
             display: block;
             color: #0066cc;
             text-decoration: none;
             margin: 0.25rem 0;
             font-size: 0.9rem;
+            cursor: pointer;
         }
-        
+
         .url-link:hover {
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>📚 Gutenberg Text Cleaner</h1>
             <p>Clean and analyze text from Project Gutenberg books</p>
         </div>
-        
+
         <div class="content">
             <form id="textForm">
                 <div class="form-group">
                     <label for="url">Project Gutenberg URL:</label>
-                    <input 
-                        type="url" 
-                        id="url" 
-                        name="url" 
-                        placeholder="https://www.gutenberg.org/files/1342/1342-0.txt"
-                        required
-                    >
+                    <input type="url" id="url" name="url" placeholder="https://www.gutenberg.org/files/1342/1342-0.txt"
+                        required>
                 </div>
-                
+
                 <button type="submit" class="button" id="submitBtn">
                     Clean & Analyze Text
                 </button>
             </form>
-            
+
             <div class="example-urls">
                 <h4>Example URLs to try:</h4>
-                <a href="#" class="url-link" onclick="setUrl('https://www.gutenberg.org/files/1342/1342-0.txt')">
+                <a class="url-link" onclick="setUrl('https://www.gutenberg.org/files/1342/1342-0.txt')">
                     Pride and Prejudice by Jane Austen
                 </a>
-                <a href="#" class="url-link" onclick="setUrl('https://www.gutenberg.org/files/84/84-0.txt')">
+                <a class="url-link" onclick="setUrl('https://www.gutenberg.org/files/84/84-0.txt')">
                     Frankenstein by Mary Shelley
                 </a>
-                <a href="#" class="url-link" onclick="setUrl('https://www.gutenberg.org/files/11/11-0.txt')">
+                <a class="url-link" onclick="setUrl('https://www.gutenberg.org/files/11/11-0.txt')">
                     Alice in Wonderland by Lewis Carroll
                 </a>
-                <a href="#" class="url-link" onclick="setUrl('https://www.gutenberg.org/files/2701/2701-0.txt')">
+                <a class="url-link" onclick="setUrl('https://www.gutenberg.org/files/2701/2701-0.txt')">
                     Moby Dick by Herman Melville
                 </a>
             </div>
-            
+
             <div class="loading" id="loading">
                 <div class="spinner"></div>
                 <p>Processing text... This may take a moment for large books.</p>
             </div>
-            
+
             <div class="error" id="error">
                 <strong>Error:</strong> <span id="errorMessage"></span>
             </div>
-            
+
             <div class="results" id="results">
                 <h2>📊 Analysis Results</h2>
-                
+
                 <div class="stat-grid" id="stats">
-                    <!-- Statistics will be populated here -->
                 </div>
-                
+
+                <div class="summary-preview" style="border-left-color: #764ba2;">
+                    <h3>📈 Most Common Words (Top 10)</h3>
+                    <ol id="common-words-list" class="text-content"
+                        style="padding-left: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem;">
+                    </ol>
+                </div>
                 <div class="summary-preview">
                     <h3>📝 Summary (First 3 sentences)</h3>
                     <div class="text-content" id="summary">
-                        <!-- Summary will be populated here -->
                     </div>
                 </div>
-                
+
                 <div class="text-preview">
                     <h3>🧹 Cleaned Text (First 500 characters)</h3>
                     <div class="text-content" id="preview">
-                        <!-- Text preview will be populated here -->
                     </div>
                 </div>
             </div>
@@ -289,34 +300,36 @@
     </div>
 
     <script>
-        // TODO: Students need to implement these functions for Part 4
-        
+        // These helper functions are provided for you
+
         function setUrl(url) {
+            // Stop the link from navigating
+            event.preventDefault();
             document.getElementById('url').value = url;
         }
-        
+
         function showLoading() {
             document.getElementById('loading').style.display = 'block';
             document.getElementById('results').style.display = 'none';
             document.getElementById('error').style.display = 'none';
             document.getElementById('submitBtn').disabled = true;
         }
-        
+
         function hideLoading() {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('submitBtn').disabled = false;
         }
-        
+
         function showError(message) {
             hideLoading();
             document.getElementById('errorMessage').textContent = message;
             document.getElementById('error').style.display = 'block';
             document.getElementById('results').style.display = 'none';
         }
-        
+
         function displayResults(data) {
             hideLoading();
-            
+
             // Display statistics
             const stats = data.statistics;
             const statsContainer = document.getElementById('stats');
@@ -342,52 +355,86 @@
                     <div class="stat-label">Avg Sentence Length</div>
                 </div>
             `;
-            
+
+            /*
+            ================================
+            == START: NEW JS BLOCK ADDED ==
+            ================================
+            */
+            // Display most common words
+            const commonWords = data.statistics.most_common_words;
+            const commonWordsList = document.getElementById('common-words-list');
+            commonWordsList.innerHTML = ''; // Clear old results
+
+            commonWords.forEach(word => {
+                const li = document.createElement('li');
+                li.textContent = word;
+                commonWordsList.appendChild(li);
+            });
+            /*
+            ===============================
+            == END: NEW JS BLOCK ADDED ==
+            ===============================
+            */
+
             // Display summary
             document.getElementById('summary').textContent = data.summary;
-            
-            // Display text preview (first 500 characters)
-            const preview = data.cleaned_text.substring(0, 500) + 
-                          (data.cleaned_text.length > 500 ? '...' : '');
-            document.getElementById('preview').textContent = preview;
-            
+
+            // --- THIS IS THE FIX ---
+            // Display text preview
+            // The API sends the *full* text, so we slice it here for the preview.
+            const fullText = data.cleaned_text;
+            const previewText = fullText.substring(0, 500); // Get first 500 chars
+            document.getElementById('preview').textContent = previewText + '...';
+            // --- END OF FIX ---
+
             // Show results
             document.getElementById('results').style.display = 'block';
             document.getElementById('error').style.display = 'none';
         }
-        
-        // TODO: Implement the form submission handler
-        document.getElementById('textForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
+
+        // --- THIS IS THE PART YOU NEED TO IMPLEMENT ---
+        document.getElementById('textForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Stop the form from reloading
+
             const url = document.getElementById('url').value;
-            
-            // TODO: Validate URL
+
+            // Validate URL
             if (!url.endsWith('.txt')) {
                 showError('Please enter a valid .txt URL from Project Gutenberg');
                 return;
             }
-            
+
             showLoading();
-            
+
             try {
-                // TODO: Make API call to /api/clean endpoint
-                // Hint: Use fetch() with POST method
-                // Send JSON: {"url": url}
-                // Handle the response
-                
-                // For now, show an error since the API isn't implemented yet
-                setTimeout(() => {
-                    showError('API not implemented yet. Complete Part 3 to make this work!');
-                }, 1000);
-                
+                // Make API call to /api/clean endpoint
+                const response = await fetch('/api/clean', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: url }) // Send the URL as JSON
+                });
+
+                const data = await response.json(); // Get the JSON response from the server
+
+                if (response.ok && data.success) {
+                    // If the server said it was successful, display results
+                    displayResults(data);
+                } else {
+                    // If the server gave an error, show it
+                    throw new Error(data.error || 'An unknown error occurred.');
+                }
+
             } catch (error) {
-                showError('Network error: ' + error.message);
+                // This catches network errors or errors thrown above
+                showError('Error: ' + error.message);
             }
         });
-        
+
         // Health check on page load
-        window.addEventListener('load', async function() {
+        window.addEventListener('load', async function () {
             try {
                 const response = await fetch('/health');
                 const data = await response.json();
@@ -398,4 +445,5 @@
         });
     </script>
 </body>
+
 </html>
