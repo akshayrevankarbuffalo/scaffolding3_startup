@@ -85,8 +85,7 @@ class TextPreprocessor:
     def tokenize_sentences(self, text: str) -> List[str]:
         """Split text into sentences"""
         # Simple sentence splitter (you can make this fancier with NLTK)
-        # NOTE: This is the original one from the starter. Your completed
-        # code uses a better regex, which is what I'll use in stats/summary.
+
         sentences = re.split(r'(?<=[.!?])\s+', text)
 
         # Clean up and filter
