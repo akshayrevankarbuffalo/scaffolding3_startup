@@ -198,5 +198,7 @@ By completing this assignment, you will:
 
 Good luck! This assignment prepares you for the main Shannon Information Theory assignment where you'll implement n-gram models and text generation using similar preprocessing techniques.
 ## Application Screenshot
-
-![My working app](screenshots/Screenshot 2025-10-26 at 3.00.13 PM.png)
+**This is the loading screen screenshot
+![alt text](<Screenshot 2025-10-26 at 3.00.13 PM.png>)
+**this is the output screenshot
+![alt text](<Screenshot 2025-10-26 at 3.00.58 PM.png>) 
